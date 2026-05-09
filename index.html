@@ -1,60 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flowers For Her</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily Bouquet 🌸</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle,#1a001f,#000);
+    font-family:Arial,sans-serif;
+    position:relative;
+}
+
+/* Background Blur */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1200') center/cover;
+    filter:blur(8px);
+    opacity:0.2;
+    z-index:-2;
+}
+
+/* Mouse Glow */
+
+.mouse-glow{
+    position:fixed;
+    width:220px;
+    height:220px;
+    background:radial-gradient(circle,rgba(255,192,203,0.3),transparent);
+    border-radius:50%;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:0;
+}
+
+/* Container */
+
+.container{
+    position:relative;
+    text-align:center;
+    color:white;
+    z-index:2;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:30px;
+    text-shadow:0 0 20px pink;
+    animation:glowTitle 2s infinite alternate;
+}
+
+@keyframes glowTitle{
+    from{
+        text-shadow:0 0 10px pink;
+    }
+    to{
+        text-shadow:0 0 30px white;
+    }
+}
+
+/* Bouquet */
+
+.bouquet{
+    position:relative;
+    width:500px;
+    height:400px;
+    margin:auto;
+}
+
+/* Flower */
+
+.flower{
+    position:absolute;
+    width:220px;
+    height:220px;
+    animation:float 4s ease-in-out infinite,sway 3s ease-in-out infinite;
+}
+
+/* Flower Positions */
+
+.flower1{
+    left:140px;
+    top:10px;
+}
+
+.flower2{
+    left:20px;
+    top:100px;
+    transform:scale(0.9);
+}
+
+.flower3{
+    right:20px;
+    top:100px;
+    transform:scale(0.9);
+}
+
+/* Petals */
+
+.petal{
+    position:absolute;
+    width:90px;
+    height:90px;
+    background:linear-gradient(145deg,#ffb6d9,#ffffff);
+    border-radius:80% 0 80% 0;
+    transform:rotate(45deg);
+    box-shadow:0 0 25px pink;
+    animation:bloom 2s forwards,glow 2s infinite alternate;
+}
+
+.petal1{
+    top:0;
+    left:65px;
+}
+
+.petal2{
+    top:65px;
+    left:0;
+}
+
+.petal3{
+    top:65px;
+    right:0;
+}
+
+.petal4{
+    bottom:0;
+    left:65px;
+}
+
+/* Center */
+
+.center{
+    position:absolute;
+    width:70px;
+    height:70px;
+    background:yellow;
+    border-radius:50%;
+    top:75px;
+    left:75px;
+    box-shadow:0 0 35px yellow;
+}
+
+/* Stem */
+
+.stem{
+    position:absolute;
+    width:10px;
+    height:170px;
+    background:limegreen;
+    top:130px;
+    left:105px;
+    z-index:-1;
+}
+
+/* Typing Text */
+
+.text{
+    margin-top:70px;
+    width:420px;
+    min-height:100px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:2rem;
+    font-size:1.4rem;
+    color:white;
+    text-shadow:0 0 10px pink;
+    border-right:3px solid white;
+    overflow:hidden;
+    animation:blink .7s infinite;
+}
+
+/* Floating Hearts */
+
+.heart{
+    position:absolute;
+    color:pink;
+    font-size:22px;
+    animation:hearts 8s linear infinite;
+}
+
+/* Falling Petals */
+
+.petals-fall span{
+    position:absolute;
+    top:-50px;
+    width:18px;
+    height:18px;
+    background:pink;
+    border-radius:50%;
+    opacity:0.8;
+    animation:fall linear infinite;
+}
+
+/* Sparkles */
+
+.sparkle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 10px white;
+    animation:twinkle infinite alternate;
+}
+
+/* Animations */
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 10px #ff9ed2;
+    }
+    to{
+        box-shadow:0 0 35px #ffd6eb;
+    }
+}
+
+@keyframes bloom{
+    from{
+        transform:scale(0) rotateY(180deg);
+        opacity:0;
+    }
+    to{
+        transform:scale(1) rotateY(0deg);
+        opacity:1;
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes sway{
+    0%,100%{
+        rotate:-2deg;
+    }
+    50%{
+        rotate:2deg;
+    }
+}
+
+@keyframes blink{
+    50%{
+        border-color:transparent;
+    }
+}
+
+@keyframes hearts{
+    0%{
+        transform:translateY(100vh) scale(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100px) scale(1.5);
+        opacity:0;
+    }
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-50px) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes twinkle{
+    from{
+        opacity:0.2;
+        transform:scale(0.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>Lily Bouquet For You ✨🌸</h1>
+<!-- Music -->
 
-    <div class="bouquet">
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
 
-  <div class="flower flower1">
-    <div class="petal petal1"></div>
-    <div class="petal petal2"></div>
-    <div class="petal petal3"></div>
-    <div class="petal petal4"></div>
-    <div class="center"></div>
-    <div class="stem"></div>
-  </div>
+<!-- Mouse Glow -->
 
-  <div class="flower flower2">
-    <div class="petal petal1"></div>
-    <div class="petal petal2"></div>
-    <div class="petal petal3"></div>
-    <div class="petal petal4"></div>
-    <div class="center"></div>
-    <div class="stem"></div>
-  </div>
+<div class="mouse-glow"></div>
 
-  <div class="flower flower3">
-    <div class="petal petal1"></div>
-    <div class="petal petal2"></div>
-    <div class="petal petal3"></div>
-    <div class="petal petal4"></div>
-    <div class="center"></div>
-    <div class="stem"></div>
-  </div>
+<div class="container">
+
+<h1>Lily Bouquet For You ✨🌸</h1>
+
+<div class="bouquet">
+
+<div class="flower flower1">
+<div class="petal petal1"></div>
+<div class="petal petal2"></div>
+<div class="petal petal3"></div>
+<div class="petal petal4"></div>
+<div class="center"></div>
+<div class="stem"></div>
+</div>
+
+<div class="flower flower2">
+<div class="petal petal1"></div>
+<div class="petal petal2"></div>
+<div class="petal petal3"></div>
+<div class="petal petal4"></div>
+<div class="center"></div>
+<div class="stem"></div>
+</div>
+
+<div class="flower flower3">
+<div class="petal petal1"></div>
+<div class="petal petal2"></div>
+<div class="petal petal3"></div>
+<div class="petal petal4"></div>
+<div class="center"></div>
+<div class="stem"></div>
+</div>
 
 </div>
 
-    <p class="text">
-  Mujhe nahi pata kya hua…
-  <br>
-  Lekin agar meri koi galti hai,
-  <br>
-  toh mujhe maaf kar do 💔
-</p>
-  </div>
+<p class="text" id="typing-text"></p>
 
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mp3">
-  </audio>
+</div>
 
-  <script src="script.js"></script>
+<script>
+
+/* Typing Text */
+
+const message =
+"Mujhe nahi pata kya hua... Lekin agar meri koi galti hai, toh mujhe maaf kar do 💔";
+
+const typingText = document.getElementById("typing-text");
+
+let index = 0;
+
+function typeText(){
+    if(index < message.length){
+        typingText.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeText,70);
+    }
+}
+
+window.onload = typeText;
+
+/* Floating Hearts */
+
+for(let i=0;i<20;i++){
+
+    const heart=document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.animationDuration=
+    (Math.random()*5+3)+"s";
+
+    document.body.appendChild(heart);
+}
+
+/* Falling Petals */
+
+const petals=document.createElement("div");
+
+petals.classList.add("petals-fall");
+
+document.body.appendChild(petals);
+
+for(let i=0;i<30;i++){
+
+    const span=document.createElement("span");
+
+    span.style.left=Math.random()*100+"vw";
+
+    span.style.animationDuration=
+    (Math.random()*5+5)+"s";
+
+    petals.appendChild(span);
+}
+
+/* Sparkles */
+
+for(let i=0;i<60;i++){
+
+    const sparkle=document.createElement("div");
+
+    sparkle.classList.add("sparkle");
+
+    sparkle.style.left=Math.random()*100+"vw";
+
+    sparkle.style.top=Math.random()*100+"vh";
+
+    sparkle.style.animationDuration=
+    (Math.random()*3+2)+"s";
+
+    document.body.appendChild(sparkle);
+}
+
+/* Mouse Glow */
+
+const glow=document.querySelector(".mouse-glow");
+
+window.addEventListener("mousemove",(e)=>{
+
+    glow.style.left=e.clientX+"px";
+
+    glow.style.top=e.clientY+"px";
+
+});
+
+</script>
+
 </body>
 </html>
