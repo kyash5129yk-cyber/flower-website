@@ -1,23 +1,174 @@
-console.log("Flower animation loaded 🌸");
-
-// Floating Hearts
-for (let i = 0; i < 20; i++) {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 5 + 3) + "s";
-  document.body.appendChild(heart);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Falling Petals
-const petals = document.createElement("div");
-petals.classList.add("petals-fall");
-document.body.appendChild(petals);
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle, #111, #000);
+  font-family: Arial, sans-serif;
+}
 
-for (let i = 0; i < 30; i++) {
-  const span = document.createElement("span");
-  span.style.left = Math.random() * 100 + "vw";
-  span.style.animationDuration = (Math.random() * 5 + 5) + "s";
-  petals.appendChild(span);
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px pink;
+}
+
+.bouquet {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  margin: auto;
+}
+
+.flower {
+
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: auto;
+  animation: float 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.petal {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: pink;
+  border-radius: 50%;
+  box-shadow: 0 0 25px pink;
+  animation: bloom 2s forwards;
+}
+
+.flower1 {
+  position: absolute;
+  left: 150px;
+  top: 20px;
+}
+
+.flower2 {
+  position: absolute;
+  left: 40px;
+  top: 80px;
+  transform: scale(0.9);
+}
+
+.flower3 {
+  position: absolute;
+  right: 40px;
+  top: 80px;
+  transform: scale(0.9);
+}
+
+.petal1 { top: 0; left: 65px; }
+.petal2 { top: 65px; left: 0; }
+.petal3 { top: 65px; right: 0; }
+.petal4 { bottom: 0; left: 65px; }
+
+.center {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: yellow;
+  border-radius: 50%;
+  top: 75px;
+  left: 75px;
+  box-shadow: 0 0 35px yellow;
+}
+
+.stem {
+  position: absolute;
+  width: 10px;
+  height: 170px;
+  background: limegreen;
+  top: 130px;
+  left: 105px;
+  z-index: -1;
+}
+
+.text {
+  margin-top: 90px;
+  font-size: 1.5rem;
+  width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid white;
+  animation: typing 6s steps(50), blink .7s infinite;
+}
+
+.heart {
+  position: absolute;
+  color: pink;
+  font-size: 20px;
+  animation: hearts 8s linear infinite;
+}
+
+.petals-fall span {
+  position: absolute;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+@keyframes bloom {
+  from {
+    transform: scale(0) rotateY(180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-15px) rotateY(10deg); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 350px; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes hearts {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
 }
